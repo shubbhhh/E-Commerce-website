@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb+srv://shubham:eSiUOKh7qiwWudRw@cluster0.gmgqxsn.mongodb.net/EComStore")  // <--- Create a database
+mongoose.connect("DATABASE_URL")  // <--- Create a database
 
 const userSchema = mongoose.Schema({
     email: String,
