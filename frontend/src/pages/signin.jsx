@@ -37,7 +37,7 @@ export function Signin() {
                         label={"Signin"}
                         onClick={signin}
                     />
-                    <BottomWarning to={"/signup"} label={"Already have an account?"} buttonText={"singin"} />
+                    <BottomWarning to={"/signup"} label={"Don't have an account?"} buttonText={"singup"} />
                 </div>
             </div>
         </div>

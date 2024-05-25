@@ -54,15 +54,15 @@ export function ItemCard(product) {
             <img className="pr-5 pl-5 pt-5  rounded-t-lg" src={proImage} alt={category} />
         <div className="px-5 pb-3">
             <a href="#">
-                <h5 className="text-l font-semibold tracking-tight mt-2 text-gray-900">{name}</h5>
+                <h5 className="text-l text-ellipsis truncate  tracking-tight mt-2 text-gray-900" title={name}>{name}</h5>
             </a>
-            <div className="flex justify-between items-center">
+            <div className="lg:flex justify-between items-center">
                 <div className="text-xl font-bold text-gray-900 ">{`₹ ${price}`}</div>
                     <div className="flex items-center justify-between" >
-                        <button className="p-2 h-9 w-9 bg-white rounded-lg" onClick={()=> AddingItem("http://localhost:3000/brandname/explore/addtocart")}>
+                        <button title="Add to cart" className="p-2 h-9 w-9 bg-white rounded-lg" onClick={()=> AddingItem("http://localhost:3000/brandname/explore/addtocart")}>
                             <img src={cart} />
                         </button>
-                        <button className="p-2 h-9 w-9 bg-white rounded-lg" onClick={Liked}>
+                        <button title="Add to wishlist" className="p-2 h-9 w-9 bg-white rounded-lg" onClick={Liked}>
                             {isLiked ? <img src={liked} /> : <img src={unliked} />}
                         </button>
                         <button className="text-l h-9 font-bold text-white p-3 bg-black rounded-full flex items-center" onClick={() => AddingItem("http://localhost:3000/brandname/explore/orderproduct")}>
