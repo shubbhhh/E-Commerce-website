@@ -35,7 +35,7 @@ export function Signup() {
         <div className="flex">
             <div className="h-screen w-1/2 flex flex-col justify-center">
                 <div className="flex justify-center font-extrabold">
-                    hiii!!
+                    hiii!!  
                 </div>
             </div>
             <div className="bg-slate-300 h-screen w-1/2 flex justify-center">
