@@ -53,11 +53,12 @@ export function ItemCard(product) {
     <div className="m-5 w-sm max-w-64 max-h-82 bg-white border border-gray-200 rounded-lg shadow ">
             <img className="pr-5 pl-5 pt-5  rounded-t-lg" src={proImage} alt={category} />
         <div className="px-5 pb-3">
-            <a href="#">
-                <h5 className="text-l text-ellipsis truncate  tracking-tight mt-2 text-gray-900" title={name}>{name}</h5>
-            </a>
-            <div className="lg:flex justify-between items-center">
-                <div className="text-xl font-bold text-gray-900 ">{`₹ ${price}`}</div>
+            <div className="gird grid-flow-row">
+                <div>
+                    <h5 className="text-l text-ellipsis truncate  tracking-tight mt-2 text-gray-900" title={name}>{name}</h5>
+                </div>
+            </div>
+            <div className="lg: flex justify-between ">
                     <div className="flex items-center justify-between" >
                         <button title="Add to cart" className="p-2 h-9 w-9 bg-white rounded-lg" onClick={()=> AddingItem("http://localhost:3000/brandname/explore/addtocart")}>
                             <img src={cart} />
@@ -70,13 +71,14 @@ export function ItemCard(product) {
                         </button>
                         {/* <Button onClick={() => AddingItem("http://localhost:3000/brandname/explore/addtocart")}
                                 label={<img src={cart} />}
-                        />
-                        <Button onClick={Liked} 
+                                />
+                                <Button onClick={Liked} 
                                 label={isLiked? <img src={liked} /> : <img src={unliked} />}
-                        />
-                        <Button onClick={() => AddingItem("http://localhost:3000/brandname/explore/orderproduct")}
+                                />
+                                <Button onClick={() => AddingItem("http://localhost:3000/brandname/explore/orderproduct")}
                                 label={"Buy"}
-                        /> */}
+                            /> */}
+                        <div className="text-xl font-bold text-gray-900 text-right">{`₹ ${price}`}</div>
                 </div>
             </div>
         </div>
