@@ -1,6 +1,7 @@
 import { Navbar } from "../components/navbar";
 import { Button } from "../components/button";
 import { Carousel } from "../components/carousel";
+import { Footer } from "../components/footer";
 import img1 from "../../../jlal20240406.jpg"
 import img2 from "../../../roa20240406.jpg"
 import img3 from "../../../denim_20210528.jpg"
@@ -22,6 +23,7 @@ export function Home() {
         <div className="min-h-screen flex flex-col">
             <Navbar />
             <Carousel slides={slides} />
+            <Footer />
         </div>
     )
 }

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const { DATABASE_URL } = require("./config");
 
-mongoose.connect("DATABASE_URL")  // <--- Create a database
+mongoose.connect(DATABASE_URL)
 
 const userSchema = mongoose.Schema({
     email: String,
