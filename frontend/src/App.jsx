@@ -5,6 +5,7 @@ import { Signin } from './pages/signin';
 import { Explore } from './pages/explore';
 import { Home } from './pages/home';
 import { Profile } from './pages/profile';
+import { Cart } from './pages/cart';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path='/signin' element={<Signin />} />
         <Route path='/explore' element={<Explore />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/profile/cart' element={<Cart />} />
       </Routes>
     </BrowserRouter>
   </>

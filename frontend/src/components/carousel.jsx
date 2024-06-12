@@ -21,7 +21,7 @@ export function Carousel ({ slides, autoSlide = false, autoSlideInterval = 3000 
         <div className="overflow-hidden relative w-full h-full">
 
             {/* Slides container */}
-            <div className="flex transition-transform ease-out duration-500 gap-2 p-2" style={{ transform: `translateX(-${curr * 100}%)` }}>
+            <div className="flex transition-transform ease-out duration-500 gap-4 p-2 items-center" style={{ transform: `translateX(-${curr * 100}%)` }}>
                 {slides.map((src, i) => (
                         <img key={i} src={src} alt={`Slide ${i}`} className="rounded-md" />
                 ))}
@@ -38,14 +38,14 @@ export function Carousel ({ slides, autoSlide = false, autoSlideInterval = 3000 
             </div>
 
             {/* Slide Indicator */}
-            {/* <div className="absolute bottom-4 right-0 left-0">
+            <div className="absolute bottom-4 right-0 left-0">
                 <div className="flex items-center justify-center gap-2">
                     {slides.map((_, i) => (
                         <div key={i} className={`transition-all w-3 h-3 bg-white rounded-full ${curr === i ? "p-2": "bg-opacity-50"}`} />
                     ))}
                 </div>
 
-            </div> */}
+            </div>
 
         </div>
     )
