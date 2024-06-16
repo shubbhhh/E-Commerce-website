@@ -4,30 +4,13 @@ import { Navbar } from "../components/navbar";
 import { Button } from "../components/button";
 import { Footer } from "../components/footer";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../authContext";
 
 
 export function Profile() {
     const navigate = useNavigate();
-    const [userData, setUserData] = useState(null);
-
-    
-    useEffect(() => { 
-        async function fetchUserDetails() {
-            try{
-                const response = await axios.get("http://localhost:3000/brandname/profile/", {
-                    headers: {
-                        authorization: localStorage.getItem("token")
-                    }
-                });
-                setUserData(response.data)
-                // console.log(response.data) 
-            } catch(err) {
-                console.log(err)
-            }}
-            fetchUserDetails();
-    }, [])
-
+    const { userData } = useContext(AuthContext);
 
     function logoutHandler() {
         localStorage.removeItem("token")

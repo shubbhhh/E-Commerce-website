@@ -5,9 +5,9 @@ const profileRouter = express.Router();
 
 profileRouter.get("/", async (req, res) => {
     try {
-        // console.log(req.userId)
+        console.log(req.userId)
         const user = await User.findOne({ _id: req.userId });
-        // console.log(user)
+        console.log(user)
         if (!user){
             return res.status(401).json({
                 message: "Something went wrong!"

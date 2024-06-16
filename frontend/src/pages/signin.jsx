@@ -22,7 +22,7 @@ export function Signin() {
         if (response.status = 200) {
             localStorage.setItem("token", response.data.token);
             login()
-            console.log(isAuthenticated)
+            // console.log(isAuthenticated)
             navigate("/explore");
         }
     }

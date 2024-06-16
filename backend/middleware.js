@@ -2,9 +2,9 @@ const jwt = require("jsonwebtoken");
 const { JWT_Secret } = require("./config");
 
 const authMiddleware = (req, res, next) => {
-    // console.log("control at middleware")
+    console.log("control at middleware")
     const token = req.headers.authorization;
-    // console.log(token)
+    console.log(token)
 
     if (!token) {
         res.status(401).json({ message: "not logged in"})

@@ -34,9 +34,9 @@ export function Signup() {
             });
 
             localStorage.setItem("token", response.data.token);
-            console.log(response.data.token)
+            console.log("token", response.data.token)
             login()
-            console.log(isAuthenticated)
+            // console.log(isAuthenticated)
             navigate("/explore");
         } catch (error) {
             alert("Something went wrong on frontend");

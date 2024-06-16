@@ -1,13 +1,15 @@
 import { useContext } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { AuthContext } from "./authContext";
 
 export const PrivateRoutes = ({ children }) => {
     const { isAuthenticated } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     if (!isAuthenticated) {
         <Navigate to="/signin" />
-        // console.log("private route control")
+        // navigate("/signin", { replace: true })
+        console.log("private route control")
         return
     }
 
