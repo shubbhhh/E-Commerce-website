@@ -4,23 +4,29 @@ const { User, Product } = require("../db");
 const profileRouter = express.Router();
 
 profileRouter.get("/", async (req, res) => {
-    const user = await User.findOne({ _id: req.body.userId });
-
-    if (!user){
-        return res.status(411).json({
-            message: "Something went wrong!"
+    try {
+        // console.log(req.userId)
+        const user = await User.findOne({ _id: req.userId });
+        // console.log(user)
+        if (!user){
+            return res.status(401).json({
+                message: "Something went wrong!"
+            })
+        }
+    
+        return res.status(200).json({
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            address: user.address,
+            wishlist: user.wishlist,
+            cart: user.cart,
+            orders: user.orders
         })
+    } catch(e) {
+        console.log(e)
+        return res.status(401)
     }
-
-    return res.status(200).json({
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        address: user.address,
-        wishlist: user.wishlist,
-        cart: user.cart,
-        orders: user.orders
-    })
 
 });
 
@@ -80,7 +86,7 @@ profileRouter.get("/cart", async (req, res) => {
 
 profileRouter.put("/cart/checkout", async (req, res) => {
     const user = await User.findOne( { _id: req.userId } );
-    console.log(user);
+    // console.log(user);
     if (!user) {
         return res.status(411).json({
             message: "Something went wrong"

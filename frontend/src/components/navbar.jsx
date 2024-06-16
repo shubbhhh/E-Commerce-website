@@ -24,8 +24,8 @@ export function Navbar() {
                     <input type="text" placeholder={`Search`} className="input input-bordered p-2 m-2 w-full rounded-xl bg-slate-100" />
                 </div>
                 <div className="flex justify-between items-center gap-4">
-                    <button onClick={() => { navigate("/profile/cart") }}>
-                        <ShoppingCart size={25} />
+                    <button className="" onClick={() => { navigate("/profile/cart") }}>
+                        <ShoppingCart className="" size={25} />
                     </button>
                     <button onClick={userButtonHandler}>
                         <User size={30}/>
@@ -33,16 +33,6 @@ export function Navbar() {
                 </div>
             </div>
         </div>
-
-//          {/* <ul className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-//              <li>
-//                  <a className="justify-between" href={"http://localhost:5173/signin"}>
-//                      Profile
-//                  </a>
-//              </li>
-//              <li><a>Settings</a></li>
-//              <li><a>Logout</a></li>
-//          </ul> */}
   
     )
 };

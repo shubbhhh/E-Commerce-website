@@ -8,22 +8,35 @@ import { Profile } from './pages/profile';
 import { Cart } from './pages/cart';
 import { Wishlist } from './pages/wishlist';
 import { UserOrders } from './pages/userOrders';
+import { AuthProvider } from './authContext';
+import { PrivateRoutes } from './privateRoute';
 
 
 function App() {
   return <>
-    <BrowserRouter>
+  <BrowserRouter>
+    <AuthProvider>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/signin' element={<Signin />} />
         <Route path='/explore' element={<Explore />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/profile/cart' element={<Cart />} />
-        <Route path='/profile/wishlist' element={<Wishlist />} />
-        <Route path='/profile/order' element={<UserOrders />} />
+        <Route
+          path='/profile/*' 
+          element={
+            <PrivateRoutes>
+              <Routes>
+                <Route path='/' element={<Profile />} />
+                <Route path='/cart' element={<Cart />} />
+                <Route path='/wishlist' element={<Wishlist />} />
+                <Route path='/order' element={<UserOrders />} />
+              </Routes>
+            </PrivateRoutes>
+          } 
+        />
       </Routes>
-    </BrowserRouter>
+    </AuthProvider>
+  </BrowserRouter>
   </>
 }
 

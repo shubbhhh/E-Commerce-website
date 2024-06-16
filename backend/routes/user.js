@@ -3,8 +3,6 @@ const { User } = require("../db");
 const zod = require("zod");
 const JWT = require("jsonwebtoken");
 const { JWT_Secret } = require("../config");
-const { profileRouter } = require("./profile");
-const { authMiddleware } = require("../middleware");
 
 const userSchema = zod.object({
     email: zod.string(),
@@ -34,7 +32,7 @@ userRouter.post("/signup", async (req, res) => {
         })
     }
 
-    const newUser = await User.create({
+    const newUser = new User({
         email: user.email,
         password: user.password,
         firstName: user.firstName,
@@ -44,8 +42,11 @@ userRouter.post("/signup", async (req, res) => {
         cart: [],
         orders: []
     });
+
+    await newUser.save()
+
     const userId = newUser._id
-    console.log(userId);
+    // console.log(userId);
     const token = JWT.sign({ userId: userId }, JWT_Secret);
 
     return res.status(200).json({
@@ -65,7 +66,6 @@ userRouter.post("/signin", async (req, res) => {
         email: req.body.email,
         password: req.body.password
     })
-
     if (!isUser) {
         return res.status(411).json({
             message: "User does not exists"

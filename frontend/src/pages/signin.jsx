@@ -1,25 +1,29 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useContext } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { Heading } from "../components/heading";
 import { InputBox } from "../components/inputbox";
 import { Button } from "../components/button";
 import { BottomWarning } from "../components/BottomWarning";
+import { AuthContext } from "../authContext";
 
 
 export function Signin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { isAuthenticated, login } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const signin = async () => {
-        const response = await axios.post("http://localhost:3000/brandname/user/singin", {
+        const response = await axios.post("http://localhost:3000/brandname/user/signin", {
             email,
             password
         });
         if (response.status = 200) {
             localStorage.setItem("token", response.data.token);
-            navigate("/brandname/explore");
+            login()
+            console.log(isAuthenticated)
+            navigate("/explore");
         }
     }
 

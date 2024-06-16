@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const { DATABASE_URL } = require("./config");
 
 mongoose.connect(DATABASE_URL)
+    .then(() => console.log("MongoDB connected..."))
+    .catch((err) => console.log(err) )
 
 const userSchema = mongoose.Schema({
     email: String,

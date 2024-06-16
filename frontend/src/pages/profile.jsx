@@ -1,19 +1,41 @@
-import img from "../assets/1564534_customer_man_user_account_profile_icon.svg"
+import axios from "axios";
 import { ShoppingCart, Heart, ShoppingBag, Package, LogOut, User, Anchor } from "react-feather";
 import { Navbar } from "../components/navbar";
 import { Button } from "../components/button";
 import { Footer } from "../components/footer";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 
 export function Profile() {
     const navigate = useNavigate();
+    const [userData, setUserData] = useState(null);
+
+    
+    useEffect(() => { 
+        async function fetchUserDetails() {
+            try{
+                const response = await axios.get("http://localhost:3000/brandname/profile/", {
+                    headers: {
+                        authorization: localStorage.getItem("token")
+                    }
+                });
+                setUserData(response.data)
+                // console.log(response.data) 
+            } catch(err) {
+                console.log(err)
+            }}
+            fetchUserDetails();
+    }, [])
+
 
     function logoutHandler() {
-        return
+        localStorage.removeItem("token")
+        navigate("/")
     }
 
     function redirectToExplore() {
-        null
+        navigate("/explore")
     }
 
     return (
@@ -24,18 +46,17 @@ export function Profile() {
                     <div className="flex gap-6 w-full">
                         <div className="w-40 h-40 flex justify-center items-center border rounded-full overflow-hidden shadow-2xl bg-gray-200 text-neutral-700">
                             <User size={200}/>
-                            {/* <img className="border-4 rounded-full" src={img} alt="" /> */}
                         </div>
                         <div className="rounded-md drop-shadow-lg text-md w-1/2">
                             <div className="p-2 text text-gray-800 border-b-2">
                                 <div className="p-0.5">
-                                    Jon Jones
+                                    {`${userData?.firstName } ${userData?.lastName}`}
                                 </div>
                                 <div className="p-0.5">
-                                    Email: jon@gmail.com
+                                    Email: {userData?.email}
                                 </div>
                                 <div className="p-0.5">
-                                    Address: ABC Street, XYZ City, Postal Code
+                                    Address: {userData?.address}
                                 </div>
                             </div>
                             <div className="flex gap-4 pt-2">
