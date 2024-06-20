@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import proImage from "../assets/products/court_vision_low_next_nature_shoes.png";
 import { ShoppingCart, Heart } from "react-feather";
+import { AuthContext } from "../authContext";
 
 
 export function ItemCard(props) {
@@ -10,27 +11,33 @@ export function ItemCard(props) {
     const page = props.page;
     const navigate = useNavigate();
     const [isLiked, setLiked] = useState(false);
+    const { isAuthenticated } = useContext(AuthContext)
     
     const Liked = async () => {
         try {
-            const like = await AddingItem("http://localhost:3000/brandname/explore/addtowishlist");
-            if (like.status = 403) {
-                navigate("http://localhost:3000/brandname/user/signin")
-                return
-            }
-            if (like.status = 200) {
+            const response = await AddingItem("http://localhost:3000/brandname/explore/addtowishlist");
+
+            if (response.status = 200) {
                 setLiked(true);
-                alert(like.data.message)
+                alert(response.data.message)
                 return
             }
-        } catch{
-            alert("something went wrong")
+        } catch(err) {
+            console.log(err)
         }
     };
 
     const AddingItem = async (url) => {
+        // if (!isAuthenticated) {
+        //     navigate("/signin")
+        // }
+
         try {
-            response = await axios.put(url, product)
+            const response = await axios.put(url, props.product, {
+                headers: {
+                    authorization: localStorage.getItem('token')
+                }
+            })
             if (response.status == 403) {
                 navigate("http://localhost:3000/brandname/user/signin")
             }
@@ -39,7 +46,7 @@ export function ItemCard(props) {
             }
             return response
             
-        } catch {
+        } catch(err) { 
             alert("Something went wrong")
         }
     
@@ -53,12 +60,12 @@ export function ItemCard(props) {
                     {name}
                 </div>
                 <div className="px-2 py-2 flex justify-between">
-                    <button className="py-1 px-2 w-1/2 items-center rounded-xl font-semibold border bg-gray-100 hover:bg-stone-700 hover:text-white">
-                        
+                    <button className="py-1 px-2 w-1/2 items-center rounded-xl font-semibold border bg-gray-100 hover:bg-stone-700 hover:text-white"
+                            onClick={ () => AddingItem("http://localhost:3000/brandname/explore/orderproduct") }>
                         {`${page==="cart"? "Remove":"Buy"}`}
                     </button>
                     <div className="w-1/3 flex justify-center items-center gap-4">
-                        <button title="Add to cart" className=" bg-white rounded-lg" onClick={()=> AddingItem("http://localhost:3000/brandname/explore/addtocart")}>
+                        <button title="Add to cart" className=" bg-white rounded-lg" onClick={ ()=> AddingItem("http://localhost:3000/brandname/explore/addtocart") }>
                             <ShoppingCart className="" />
                         </button>
                         <button title="Add to wishlist" className="bg-white rounded-lg" onClick={Liked}>

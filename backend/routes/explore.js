@@ -5,7 +5,7 @@ const { authMiddleware } = require("../middleware");
 const exploreRouter = express.Router();
 
 exploreRouter.get("/", async (req, res) => {
-    const filter = req.query.filter
+    const filter = req.query?.filter || ""
 
     const products = await Product.find({
         $or: [{
@@ -15,23 +15,26 @@ exploreRouter.get("/", async (req, res) => {
         }]
     });
 
+    console.log(products)
+
     return res.status(200).json({
         products: products.map(product => ({
             productName: product.name,
             productPrice: product.price,
-            productId: product._id
+            _id: product._id
         }))
     });
 });
 
 // middleware check!! PUT: "/addToCart" <--- Product ID
 exploreRouter.put("/addtocart", authMiddleware, async (req, res) => {
+    console.log("--> adding to cart")
+    console.log(req.body)
     try {
         await User.findOneAndUpdate(
             { _id: req.userId },
             { $push: { cart: req.body.product._id } }
         )
-
     } catch(err) {
         return res.status(411).json({
             message: "Something went wrong"
@@ -48,7 +51,7 @@ exploreRouter.put("/orderproduct", authMiddleware, async (req, res) => {
     try {
         await User.findOneAndUpdate(
             { _id: req.userId },
-            { $push: { orders: req.body.productId } }
+            { $push: { orders: req.body._id } }
         )
 
     } catch(err) {
@@ -69,15 +72,14 @@ exploreRouter.put("/addtowishlist", authMiddleware, async (req, res) => {
     try {
         await User.findOneAndUpdate(
             { _id: req.userId },
-            { $push: { wishlist: req.body.productId } }
+            { $push: { wishlist: req.body._id } }
         )
-
     } catch(err) {
+        console.log(err)
         return res.status(411).json({
             message: "Something went wrong"
         })
     }
-
     return res.status(200).json({
         message: "Item added to wishlist"
     });

@@ -8,6 +8,7 @@ export function Explore() {
     // const [filter, setFilter] = useState("");
 
     const pro = {
+        _id: "66138175b4850580421ac27e",
         name: "Nike Court Vision Low Next Nature",
         img: "court_vision_low_next_nature_shoes.png",
         price: "20000",

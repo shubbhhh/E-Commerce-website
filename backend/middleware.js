@@ -18,6 +18,7 @@ const authMiddleware = (req, res, next) => {
         return res.status(200)
     
     } catch(err) {
+        console.log("Error-->", err)
         return res.status(401).json({});
     }
 };
