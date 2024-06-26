@@ -1,4 +1,3 @@
-import cart from "../assets/icons/cart-shopping-solid.svg";
 import { useNavigate } from "react-router-dom";
 import { User, ShoppingCart,Search } from "react-feather";
 

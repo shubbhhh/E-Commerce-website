@@ -18,11 +18,7 @@ exploreRouter.get("/", async (req, res) => {
     console.log(products)
 
     return res.status(200).json({
-        products: products.map(product => ({
-            productName: product.name,
-            productPrice: product.price,
-            _id: product._id
-        }))
+        products
     });
 });
 
