@@ -15,11 +15,28 @@ exploreRouter.get("/", async (req, res) => {
         }]
     });
 
-    console.log(products)
+    // console.log(products)
 
     return res.status(200).json({
         products
     });
+});
+
+exploreRouter.get("/:id", async (req, res) => {
+    try {
+        const product = await Product.findOne({
+            _id: req.params.id
+        })
+        console.log(product)
+        return res.status(200).json({
+            product
+        })
+    } catch(err) {
+        console.log(err)
+        return res.status(411).json({
+            message: "Error while fetching product"
+        })
+    }
 });
 
 // middleware check!! PUT: "/addToCart" <--- Product ID
@@ -29,14 +46,15 @@ exploreRouter.put("/addtocart", authMiddleware, async (req, res) => {
     try {
         await User.findOneAndUpdate(
             { _id: req.userId },
-            { $push: { cart: req.body.product._id } }
+            { $push: { cart: req.body._id } }
         )
     } catch(err) {
+        console.log(err)
         return res.status(411).json({
             message: "Something went wrong"
         })
     }
-
+    
     return res.status(200).json({
         message: "Item added to cart"
     });
@@ -49,13 +67,13 @@ exploreRouter.put("/orderproduct", authMiddleware, async (req, res) => {
             { _id: req.userId },
             { $push: { orders: req.body._id } }
         )
-
+        
     } catch(err) {
         return res.status(411).json({
             message: "Something went wrong"
         })
     }
-
+    
     return res.status(200).json({
         message: "Item ordered"
     });
