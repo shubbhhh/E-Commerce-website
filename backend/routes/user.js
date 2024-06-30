@@ -4,7 +4,7 @@ const zod = require("zod");
 const JWT = require("jsonwebtoken");
 const { JWT_Secret } = require("../config");
 
-const userSchema = zod.object({
+const userSignUpSchema = zod.object({
     email: zod.string(),
     password: zod.string(),
     firstName: zod.string(),
@@ -13,25 +13,28 @@ const userSchema = zod.object({
     wishlist: zod.array(),
     cart: zod.array(),
     orders: zod.array()
-})
+});
+
+const userSignInSchema = zod.object({
+    email: zod.string(),
+    password: zod.string()
+});
 
 const userRouter = express.Router();
 
 userRouter.post("/signup", async (req, res) => {
     const user = req.body
-
-    // if (!userSchema.safeParse(user)) {
-    //     return res.status(411).json({
-    //         message: "Invalid Inputs!!"
-    //     })
-    // }
+    if (!userSignUpSchema.safeParse(user)) {
+        return res.status(411).json({
+            message: "Invalid Inputs!!"
+        })
+    }
 
     if (await User.findOne({ email: user.email })) {
         return res.status(411).json({
             message: "User already exsits"
         })
     }
-
     const newUser = new User({
         email: user.email,
         password: user.password,
@@ -44,9 +47,8 @@ userRouter.post("/signup", async (req, res) => {
     });
 
     await newUser.save()
-
     const userId = newUser._id
-    // console.log(userId);
+
     const token = JWT.sign({ userId: userId }, JWT_Secret);
 
     return res.status(200).json({
@@ -56,11 +58,11 @@ userRouter.post("/signup", async (req, res) => {
 });
 
 userRouter.post("/signin", async (req, res) => {
-    // if (!userSchema.safeParse(req.body)) {
-    //     return res.status(411).json({
-    //         message: "Invalid input!"
-    //     })
-    // }
+    if (!userSignInSchema.safeParse(req.body)) {
+        return res.status(411).json({
+            message: "Invalid input!"
+        });
+    }
 
     const isUser = await User.findOne({
         email: req.body.email,
@@ -72,14 +74,11 @@ userRouter.post("/signin", async (req, res) => {
         })
     }
 
-    const token = await JWT.sign({ userId: isUser._id }, JWT_Secret);
-
+    const token = JWT.sign({ userId: isUser._id }, JWT_Secret);
     return res.status(200).json({
-        token
+        token,
+        _id: isUser._id
     })
 });
-
-// Create a middleware
-// userRouter.use("/profile", authMiddleware , profileRouter)
 
 module.exports = { userRouter }
