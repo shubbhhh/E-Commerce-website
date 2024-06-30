@@ -7,7 +7,7 @@ import { Home } from './pages/home';
 import { Profile } from './pages/profile';
 import { Cart } from './pages/cart';
 import { Wishlist } from './pages/wishlist';
-import { UserOrders } from './pages/userOrders';
+import { Orders } from './pages/userOrders';
 import { AuthProvider } from './authContext';
 import { PrivateRoutes } from './privateRoute';
 
@@ -29,10 +29,10 @@ function App() {
                 <Route path='/' element={<Profile />} />
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/wishlist' element={<Wishlist />} />
-                <Route path='/order' element={<UserOrders />} />
+                <Route path='/order' element={<Orders />} />
               </Routes>
             </PrivateRoutes>
-          } 
+          }
         />
       </Routes>
     </AuthProvider>

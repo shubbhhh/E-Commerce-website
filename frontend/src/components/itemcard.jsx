@@ -6,12 +6,12 @@ import { AuthContext } from "../authContext";
 
 
 export function ItemCard(props) {
-    const { name, img, price, category } = props.product; 
+    const { name, img, price, category, _id } = props.product;
     const proImage = `/products/${img}`;
     const page = props.page;
     const navigate = useNavigate();
     const [isLiked, setLiked] = useState(false);
-    const { isAuthenticated } = useContext(AuthContext)
+    const { isAuthenticated, userData, setUserData } = useContext(AuthContext)
     
     const Liked = async () => {
         try {
@@ -28,20 +28,21 @@ export function ItemCard(props) {
     };
 
     const AddingItem = async (url) => {
-        // if (!isAuthenticated) {
-        //     navigate("/signin")
-        // }
+        if (!isAuthenticated) {
+            navigate("/signin")
+        }
 
         try {
             const response = await axios.put(url, props.product, {
                 headers: {
-                    authorization: localStorage.getItem('token')
+                    authorization: localStorage.getItem('token'),
                 }
             })
             if (response.status == 403) {
-                navigate("http://localhost:3000/brandname/user/signin")
+                navigate("/signin")
             }
             if (response.status = 200) {
+                console.log(response.data)
                 alert(response.data.message)
             }
             return response
@@ -53,9 +54,9 @@ export function ItemCard(props) {
     };
 
     return ( <>
-        <div className="rounded-md border-x border-dotted hover:shadow-md hover:bg-gray-100 w-full h-full flex flex-col">
-            <img title={name} className="rounded-t-md object-scale-down w-full h-72" src={proImage} alt={name} />
-            <div className="flex-1 flex flex-col justify-between p-2">
+        <div className="rounded-md    hover:shadow-md hover:bg-gray-100 w-full h-full flex flex-col">
+            <img onClick={() => { navigate(`${_id}`)}} title={name} className="rounded-t-md object-scale-down w-full h-72" src={proImage} alt={name} />
+            <div className="flex-1 flex flex-col justify-between p-2 border-x border-b border-dotted">
                 <div title={name} className="border-b pb-1 truncate">
                     {name}
                 </div>
@@ -67,6 +68,7 @@ export function ItemCard(props) {
                         {`${page === "cart" ? "Remove" : "Buy"}`}
                     </button>
                     <div className="w-1/3 flex justify-center items-center gap-4">
+                        { page === "cart" ? null : <>
                         <button
                             title="Add to cart"
                             className="bg-white rounded-lg"
@@ -78,9 +80,10 @@ export function ItemCard(props) {
                             title="Add to wishlist"
                             className="bg-white rounded-lg"
                             onClick={Liked}
-                        >
+                        > 
                             <Heart className={`hover:fill-red-600 ${isLiked ? "fill-red-600" : "fill-none"}`} color={isLiked ? "#d62d2d" : "#080000"} />
                         </button>
+                        </>}
                     </div>
                 </div>
             </div>

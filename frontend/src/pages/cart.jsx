@@ -1,19 +1,37 @@
 import { Navbar } from "../components/navbar";
 import { Footer } from "../components/footer";
 import { ItemCard } from "../components/itemcard";
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../authContext";
+import { useNavigate } from "react-router-dom";
 
 export function Cart() {
+    const navigate = useNavigate();
+    const { userData } = useContext(AuthContext);
+    const [cartItems, setCartItems] = useState([]);
+    const [totalAmount, setTotalAmount] = useState(Number);
+    const [totalProducts, setTotalProducts] = useState(Number);
 
-    const pro = {
-        name: "Nike Court Vision Low Next Nature",
-        img: "court_vision_low_next_nature_shoes.png",
-        price: "20000",
-        Category: "Shoes"
+    async function getCartItems() {
+        try {
+            const response = await axios.get("http://localhost:3000/brandname/profile/", {
+                headers: {
+                    authorization: localStorage.getItem("token")
+                }
+            });
+            setCartItems(response.data.cart);
+            setTotalProducts(cartItems.length)
+            const total = cartItems.reduce((total, item) => total + item.price, 0)
+            setTotalAmount(total)
+        } catch(error) {    
+            console.log(error);
+        }
     }
 
-    function cartItems() {
-        return
-    }
+    useEffect(() => {
+        getCartItems()
+    }, [userData])
 
     return <>
     <Navbar />
@@ -23,8 +41,7 @@ export function Cart() {
         </div>
         <div className="flex justify-between">
             <div className="p-6 w-2/3 grid grid-cols-4 gap-5">
-                <ItemCard product={pro} page="cart" />
-                <ItemCard product={pro} page="cart" />
+                {cartItems.map((product, index) => <ItemCard key={index} product={product} page="cart" />)}
             </div>
             <div className="m-6 pl-3 font-mono font-bold text-xl border-l items-start w-1/3">
                 <div className="m-2 p-2 border-b">
@@ -36,7 +53,7 @@ export function Cart() {
                             Total Products:
                         </div>
                         <div>
-                            5
+                            {totalProducts}
                         </div>
                     </div>
                     <div className="flex justify-between font-light text-lg font-mono">
@@ -52,16 +69,18 @@ export function Cart() {
                             Total Amount: 
                         </div>
                         <div>
-                            ₹.40000
+                            ₹.{totalAmount}
                         </div>
                     </div>
                 </div>
                 <div className="items-center">
-                    <button className="m-2 px-2 py-1 w-full rounded-xl border font-light text-md hover:bg-black hover:text-white">
+                    <button title="Dummy button" className="m-2 px-2 py-1 w-full rounded-xl border font-light text-md hover:bg-black hover:text-white">
                         Checkout
                     </button>
                     <div className="mx-4 my-2 border border-gray-200"></div>
-                    <button className="m-2 px-2 py-1 w-full rounded-xl border font-light text-md hover:bg-black hover:text-white">
+                    <button className="m-2 px-2 py-1 w-full rounded-xl border font-light text-md hover:bg-black hover:text-white"
+                            onClick={() => navigate("/explore")}
+                    >
                         Continue shopping
                     </button>
                 </div>

@@ -9,8 +9,6 @@ export const AuthProvider = ({ children }) => {
     const navigate  = useNavigate();
     const [userData, setUserData] = useState(null);
     
-    
-    
     useEffect(() => {
         async function checkAuth() {
             try {
@@ -19,7 +17,6 @@ export const AuthProvider = ({ children }) => {
                         authorization: localStorage.getItem("token")
                     }
                 });
-
                 if (response.status === 200) {
                     setUserData(response.data)
                     setIsAuthenticated(true);
