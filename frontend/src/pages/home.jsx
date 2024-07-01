@@ -1,7 +1,9 @@
 import { Navbar } from "../components/navbar";
-import { Button } from "../components/button";
 import { Carousel } from "../components/carousel";
+import { Button } from "../components/button";
 import { Footer } from "../components/footer";
+import { useNavigate } from "react-router-dom";
+import { ArrowUpRight } from "react-feather";
 
 const slides = [
     "/home/TRENDING_NOW_Web_8f133216-20fa-4f2b-ab53-16700bf7a8fe.webp",
@@ -13,13 +15,44 @@ const slides = [
 ]
 
 export function Home() {
-    return (
+    const navigate = useNavigate();
+
+    return (<div className="min-h-full">
+        <Navbar />
         <div className="min-h-screen flex flex-col">
-            <Navbar />
-            <div className="p-2 items-center">
+            <div className="items-center w-full">
                 <Carousel slides={slides} />
             </div>
-            <Footer />
+        </div>
+        <div className="flex items-center min-h-screen">
+            <div className="flex-col justify-center w-1/3 items-center">
+                <div className="m-4 items-center">
+                    <div className="m-4 text-6xl p-2 font-bold">
+                        Top Fashion for a top price!
+                    </div>
+                    <div className="m-4 text-lg p-2 font-thin">
+                        We sell only the most exclusive and high quality products for you. We are the best so come and shop with us.
+                    </div>
+                    <div className="flex">
+                        <button className="mx-4 w-1/3 p-2 border hover:bg-black hover:text-white"
+                                onClick={() => {navigate("/explore")}}
+                        >
+                            Explore
+                        </button>
+                        <button className="flex gap-2 mx-4 w-1/3 p-2 animate-pulse hover:animate-none border hover:bg-black hover:text-white"
+                                onClick={() => {navigate("/signin")}}
+                        >
+                            <ArrowUpRight /> Signin
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div className="flex justify-center w-2/3 p-4">
+                <img className="m-2 rounded-lg" height="400" width="400" src="/home/f7617386394073.5d97bb1e3194d.jpg" alt="" />
+                <img className="m-2 rounded-lg" height="400" width="400" src="/home/My Dream Of Publishing My Own Photography Book Is Almost A Reality!.jpeg" alt="" />
+            </div>
+        </div>
+        <Footer />
         </div>
     )
 }

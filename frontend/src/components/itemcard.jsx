@@ -54,7 +54,7 @@ export function ItemCard(props) {
     };
 
     return ( <>
-        <div className="rounded-md    hover:shadow-md hover:bg-gray-100 w-full h-full flex flex-col">
+        <div className="rounded-md hover:shadow-md hover:bg-gray-100 w-full h-full flex flex-col">
             <img onClick={() => { navigate(`${_id}`)}} title={name} className="rounded-t-md object-scale-down w-full h-72" src={proImage} alt={name} />
             <div className="flex-1 flex flex-col justify-between p-2 border-x border-b border-dotted">
                 <div title={name} className="border-b pb-1 truncate">
