@@ -22,7 +22,7 @@ export function Profile() {
     }
 
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen pt-6">
         <Navbar />
         <div className="p-5 h-full">
                 <div className="flex justify-between m-3 p-4 rounded-md">
@@ -43,19 +43,19 @@ export function Profile() {
                                 </div>
                             </div>
                             <div className="flex gap-4 pt-2">
-                                <button className="flex flex-col justify-center items-center rounded-md border border-transparent py-2 w-1/3 box-content text-neutral-700 hover:bg-gray-100/50"
+                                <button className="flex flex-col justify-center items-center rounded-md border border-transparent py-2 w-1/3 box-content text-neutral-700 hover:scale-105"
                                         onClick={ () =>  navigate("/profile/cart") }
                                 >
                                     <ShoppingCart size={35}/>
                                     Your Cart
                                 </button>
-                                <button className="flex flex-col justify-center items-center rounded-md border border-transparent py-2 w-1/3 box-content text-neutral-700 hover:bg-gray-100/50"
+                                <button className="flex flex-col justify-center items-center rounded-md border border-transparent py-2 w-1/3 box-content text-neutral-700 hover:scale-105"
                                         onClick={ () =>  navigate("/profile/wishlist") }
                                 >
                                     <Heart size={35} />
                                     Your Wishlist
                                 </button>
-                                <button className="flex flex-col justify-center items-center rounded-md border border-transparent py-2 w-1/3 box-content text-neutral-700 hover:bg-gray-100/50"
+                                <button className="flex flex-col justify-center items-center rounded-md border border-transparent py-2 w-1/3 box-content text-neutral-700 hover:scale-105"
                                     onClick={ () =>  navigate("/profile/order") }
                                 >
                                     <Package size={35} />
@@ -77,7 +77,7 @@ export function Profile() {
                         <ShoppingBag size={30}/>
                         Your Pruchases
                     </div>
-                    <div className="p-4 flex flex-col justify-center text text-center text-gray-500 bg-gray-100 h-40">
+                    <div className="p-4 flex flex-col justify-center text text-center text-gray-500 bg-gray-300/60 h-[210px]">
                         No purchases made.
                     </div>
                 </div>

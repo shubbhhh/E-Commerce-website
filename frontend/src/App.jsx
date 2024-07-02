@@ -1,4 +1,5 @@
 import React from 'react';
+import "./App.css"
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { Signup } from './pages/signup';
 import { Signin } from './pages/signin';
@@ -13,7 +14,7 @@ import { PrivateRoutes } from './privateRoute';
 
 
 function App() {
-  return <>
+  return <div className='app'>
   <BrowserRouter>
     <AuthProvider>
       <Routes>
@@ -37,7 +38,7 @@ function App() {
       </Routes>
     </AuthProvider>
   </BrowserRouter>
-  </>
+  </div>
 }
 
 export default App;

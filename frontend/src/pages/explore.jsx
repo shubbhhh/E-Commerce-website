@@ -16,17 +16,17 @@ export function Explore() {
     }, [])
 
     return (
-        <>
+        <div className="pt-14 relative">
             <Navbar></Navbar>
-            <div className="flex ">
-                <div className="bg-gray-100 w-1/3 border shadow">
+            <div className="flex">
+                <div className="p-2 bg-gray-200 w-1/3">
                     Side panel for filters and shit
                 </div>
-                <div className="p-4 grid grid-cols-2 gap-4 lg:grid-cols-5 sm:grid-cols-3">
+                <div className="p-4 grid grid-cols-2 gap-6 lg:grid-cols-5 sm:grid-cols-3">
                     {products.map( (product, index) =>( <ItemCard key={index} product={product} /> ))}
                 </div>
             </div>
             <Footer />
-        </>
+        </div>
     )
 }

@@ -1,4 +1,5 @@
 import { Navbar } from "../components/navbar";
+import "../App.css"
 import { Carousel } from "../components/carousel";
 import { Button } from "../components/button";
 import { Footer } from "../components/footer";
@@ -17,11 +18,11 @@ const slides = [
 export function Home() {
     const navigate = useNavigate();
 
-    return (<div className="min-h-full">
+    return (<div className="min-h-full bg-[#f3f3f3]">
         <Navbar />
         <div className="min-h-screen flex flex-col">
             <div className="items-center w-full">
-                <Carousel slides={slides} />
+                <Carousel slides={slides} autoSlide={true} />
             </div>
         </div>
         <div className="flex items-center min-h-screen">

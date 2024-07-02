@@ -35,7 +35,7 @@ export function Cart() {
 
     return <>
     <Navbar />
-    <div className="h-screen">
+    <div className="px-2 pt-14 h-[92vh]">
         <div className="p-6 font-bold text-xl border-b">
             Your Cart
         </div>

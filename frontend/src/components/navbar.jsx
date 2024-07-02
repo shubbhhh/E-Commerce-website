@@ -1,38 +1,38 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { User, ShoppingCart,Search } from "react-feather";
+import "../App.css"
 
 
 
-export function Navbar(className="") {
+export function Navbar() {
     const navigate = useNavigate();
+    const loction = useLocation();
 
     function userButtonHandler() {
         navigate("/profile")
     }
 
     return (
-        <div className="shadow-md flex justify-center">
+        <div className={`navbar ${loction.pathname == "/" ? "" : "shadow-sm"} ${loction.pathname == "/explore" ? "bg-[#f3f3f3]" : ""} flex justify-center h-[60px]`}>
             <div className="flex items-center w-full md:justify-between max-w-screen-xl mx-auto">
                 <div className="flex justify-between gap-3">
-                    <a href="/" className="btn btn-ghost text-xl font-extrabold">
-                        Brandname
+                    <a href="/" className="btn btn-ghost text-2xl font-light">
+                        BRANDNAME
                     </a>
                     <div className="btn btn-ghost text-xl font-semibold"> | </div>
-                    <button className="btn btn-ghost text-l font-semibold items-baseline p-1"
-                            onClick={() => {navigate("/explore")} }
-                    >
+                    <a href="/explore" className="btn btn-ghost text-l font-bold items-baseline p-1 hover:scale-105">
                         Explore
-                    </button>
+                    </a>
                 </div>
-                <div className="flex items-center form-control w-1/2 justify-center">
+                <div className="flex items-center gap-2 form-control w-1/2 justify-center">
                     <Search />
-                    <input type="text" placeholder={`Search`} className="p-2 m-2 w-full rounded-xl bg-slate-100" />
+                    <input type="text" placeholder={`Search`} className="w-1/2 border-b border-blue-gray-200 bg-transparent py-1.5 font-sans text-sm font-normal text-black outline outline-0 transition-all placeholder-shown:border-black placeholder-black placeholder-opacity-60 focus:border-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50" />
                 </div>
                 <div className="flex justify-between items-center gap-4">
-                    <button className="" onClick={() => { navigate("/profile/cart") }}>
+                    <button className="hover:scale-105" onClick={() => { navigate("/profile/cart") }}>
                         <ShoppingCart className="" size={25} />
                     </button>
-                    <button onClick={userButtonHandler}>
+                    <button className="hover:scale-105" onClick={userButtonHandler}>
                         <User size={30}/>
                     </button>
                 </div>

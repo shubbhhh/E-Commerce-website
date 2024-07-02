@@ -54,21 +54,21 @@ export function ItemCard(props) {
     };
 
     return ( <>
-        <div className="rounded-md hover:shadow-md hover:bg-gray-100 w-full h-full flex flex-col">
-            <img onClick={() => { navigate(`${_id}`)}} title={name} className="rounded-t-md object-scale-down w-full h-72" src={proImage} alt={name} />
-            <div className="flex-1 flex flex-col justify-between p-2 border-x border-b border-dotted">
+        <div className="rounded-md w-full h-full flex flex-col hover:scale-105">
+            <img onClick={() => { navigate(`${_id}`)}} title={name} className="rounded-t-md object-fill w-full h-72" src={proImage} alt={name} />
+            <div className="flex-1 flex flex-col justify-between p-2 border-x border-b">
                 <div title={name} className="border-b pb-1 truncate">
                     {name}
                 </div>
                 <div className="flex justify-between items-center mt-2">
                     <button
-                        className="py-1 px-2 w-1/2 items-center rounded-xl font-semibold border bg-gray-100 hover:bg-stone-700 hover:text-white"
+                        className={`py-1 px-2 ${page === 'cart' ? "w-full" : "w-1/2"} items-center rounded-xl font-semibold border bg-gray-100 hover:bg-stone-700 hover:text-white`}
                         onClick={() => AddingItem("http://localhost:3000/brandname/explore/orderproduct")}
                     >
                         {`${page === "cart" ? "Remove" : "Buy"}`}
                     </button>
+                    { page === "cart" ? null : <>
                     <div className="w-1/3 flex justify-center items-center gap-4">
-                        { page === "cart" ? null : <>
                         <button
                             title="Add to cart"
                             className="bg-white rounded-lg"
@@ -83,8 +83,8 @@ export function ItemCard(props) {
                         > 
                             <Heart className={`hover:fill-red-600 ${isLiked ? "fill-red-600" : "fill-none"}`} color={isLiked ? "#d62d2d" : "#080000"} />
                         </button>
-                        </>}
                     </div>
+                    </>}
                 </div>
             </div>
         </div>

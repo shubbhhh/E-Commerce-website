@@ -18,7 +18,7 @@ export function Carousel ({ slides, autoSlide = false, autoSlideInterval = 3000 
      }, [])
 
     return (
-        <div className="overflow-hidden relative w-full h-full">
+        <div className="overflow-hidden relative w-full h-[]">
 
             {/* Slides container */}
             <div className="flex transition-transform ease-out duration-500 items-center" style={{ transform: `translateX(-${curr * 100}%)` }}>
