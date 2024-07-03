@@ -1,10 +1,10 @@
 import { Navbar } from "../components/navbar";
-import "../App.css"
 import { Carousel } from "../components/carousel";
-import { Button } from "../components/button";
 import { Footer } from "../components/footer";
 import { useNavigate } from "react-router-dom";
 import { ArrowUpRight } from "react-feather";
+import { useState, useEffect } from "react";
+import "../App.css"
 
 const slides = [
     "/home/TRENDING_NOW_Web_8f133216-20fa-4f2b-ab53-16700bf7a8fe.webp",
@@ -17,16 +17,21 @@ const slides = [
 
 export function Home() {
     const navigate = useNavigate();
+    const [animate, setAnimate] = useState(false);
+
+    useEffect(() => {
+        setAnimate(true);
+    }, []);
 
     return (<div className="min-h-full bg-[#f3f3f3]">
         <Navbar />
         <div className="min-h-screen flex flex-col">
-            <div className="items-center w-full">
+            <div className="items-center w-full h-full">
                 <Carousel slides={slides} autoSlide={true} />
             </div>
         </div>
-        <div className="flex items-center min-h-screen">
-            <div className="flex-col justify-center w-1/3 items-center">
+        <div className="flex items-center h-[600px] my-6">
+            <div className={`flex-col justify-center w-1/3 items-center ${ animate? "fadeInLeft" : ""}`}>
                 <div className="m-4 items-center">
                     <div className="m-4 text-6xl p-2 font-bold">
                         Top Fashion for a top price!
@@ -48,7 +53,7 @@ export function Home() {
                     </div>
                 </div>
             </div>
-            <div className="flex justify-center w-2/3 p-4">
+            <div className={`flex justify-center w-2/3 p-4 ${animate ? 'fadeInRight' : ''}`}>
                 <img className="m-2 rounded-lg" height="400" width="400" src="/home/f7617386394073.5d97bb1e3194d.jpg" alt="" />
                 <img className="m-2 rounded-lg" height="400" width="400" src="/home/My Dream Of Publishing My Own Photography Book Is Almost A Reality!.jpeg" alt="" />
             </div>

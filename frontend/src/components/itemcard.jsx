@@ -54,15 +54,15 @@ export function ItemCard(props) {
     };
 
     return ( <>
-        <div className="rounded-md w-full h-full flex flex-col hover:scale-105">
+        <div className="rounded-md w-full h-full flex flex-col bg-white border-t hover:shadow">
             <img onClick={() => { navigate(`${_id}`)}} title={name} className="rounded-t-md object-fill w-full h-72" src={proImage} alt={name} />
-            <div className="flex-1 flex flex-col justify-between p-2 border-x border-b">
+            <div className="flex flex-col justify-between p-2 border-x border-b rounded-b-md">
                 <div title={name} className="border-b pb-1 truncate">
                     {name}
                 </div>
                 <div className="flex justify-between items-center mt-2">
                     <button
-                        className={`py-1 px-2 ${page === 'cart' ? "w-full" : "w-1/2"} items-center rounded-xl font-semibold border bg-gray-100 hover:bg-stone-700 hover:text-white`}
+                        className={`py-1 px-2 ${page === 'cart' ? "w-full" : "w-1/2"} items-center rounded-xl font-semibold border hover:bg-stone-700 hover:text-white`}
                         onClick={() => AddingItem("http://localhost:3000/brandname/explore/orderproduct")}
                     >
                         {`${page === "cart" ? "Remove" : "Buy"}`}

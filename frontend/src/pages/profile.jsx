@@ -31,7 +31,7 @@ export function Profile() {
                             <User size={200}/>
                         </div>
                         <div className="rounded-md text-md w-1/2">
-                            <div className="p-2 text text-gray-800 border-b">
+                            <div className="p-2 text text-black border-b">
                                 <div className="p-0.5">
                                     {`${userData?.firstName } ${userData?.lastName}`}
                                 </div>
@@ -66,7 +66,7 @@ export function Profile() {
                     </div>
                     <div className="flex flex-col justify-center items-center gap-5 border-l-2 p-5 w-1/3">
                         <Button label={"Continue shopping"} onClick={redirectToExplore}/>
-                        <div className="flex gap-2 justify-center items-center text-lg text-gray-600 hover:text-black">
+                        <div className="flex gap-2 justify-center items-center text-lg text-gray-600 hover:text-black hover:scale-105">
                             <LogOut />
                             <button onClick={logoutHandler}>Logout</button>
                         </div>    
