@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { User, ShoppingCart, Search, Compass, Anchor } from "react-feather";
+import { User, ShoppingCart, Search, Compass, Anchor, Feather } from "react-feather";
 import "../App.css"
 
 
@@ -17,7 +17,7 @@ export function Navbar() {
             <div className="flex items-center w-full md:justify-between max-w-screen-xl mx-auto">
                 <div className="flex justify-between gap-3">
                     <a href="/" className="flex gap-2 items-center text-3xl font-thin">
-                        <Anchor/> BRANDNAME
+                        <Feather /> BRANDNAME
                     </a>
                 </div>
                 <div className="flex items-center gap-2 form-control w-1/2 justify-center">

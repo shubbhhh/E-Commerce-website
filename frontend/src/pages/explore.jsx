@@ -20,7 +20,7 @@ export function Explore() {
         <div className="pt-14 relative">
             <Navbar></Navbar>
             <div className="flex">
-                <div className="p-2 w-1/3 bg-gray-100">
+                <div className="p-2 w-[350px]">
                     <SidePanel />
                 </div>
                 <div className="p-4 grid grid-cols-2 gap-6 lg:grid-cols-5 sm:grid-cols-3">
