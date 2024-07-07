@@ -1,15 +1,15 @@
 
 export function SidePanel() {
-    return <div className="">
+    return <div className="px-4">
         <div className="flex justify-between m-1 py-1 border-b font-semibold">
             Shop for
         </div>
         <div className="flex-col flex gap-4 justify-between m-1 py-2">
-            <div className="flex gap-2 w-full py-2">
-                <button type="radio" className="w-1/2 hover:text-red-600 hover:underline">Men</button>
-                <button type="radio" className="w-1/2 hover:text-red-600 hover:underline">Women</button>
+            <div className="flex gap-2 w-full">
+                <button className="w-1/2 hover:text-red-600 hover:underline">Men</button>
+                <button className="w-1/2 hover:text-red-600 hover:underline">Women</button>
             </div>
-            <div className="font-semibold border-y py-1">
+            <div className="font-semibold border-b py-1">
                 Shop by product
             </div>
             <div className="flex flex-col items-start w-full">

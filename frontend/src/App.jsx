@@ -7,6 +7,7 @@ import { Explore } from './pages/explore';
 import { Home } from './pages/home';
 import { Profile } from './pages/profile';
 import { Cart } from './pages/cart';
+import { Product } from './pages/product';
 import { Wishlist } from './pages/wishlist';
 import { Orders } from './pages/userOrders';
 import { AuthProvider } from './authContext';
@@ -22,6 +23,7 @@ function App() {
         <Route path='/signup' element={<Signup />} />
         <Route path='/signin' element={<Signin />} />
         <Route path='/explore' element={<Explore />} />
+        <Route path='/explore/:id' element={<Product />} />
         <Route
           path='/profile/*' 
           element={
