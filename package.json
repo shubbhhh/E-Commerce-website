@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "dev": "concurrently --prefix \"[{name}]\" --names \"backend,frontend\" -c \"blue,green\" \"cd backend && node index.js \" \"cd frontend && npm run dev\" ",
+    "install:all": "concurrently --prefix \"[{name}]\" --names \"backend-install,frontend-install\" -c \"blue,green\" \"cd backend && npm install \" \"cd frontend && npm install\" "
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
