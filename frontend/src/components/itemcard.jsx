@@ -55,7 +55,7 @@ export function ItemCard(props) {
 
     return ( <>
         <div className="rounded-md w-full h-full flex flex-col bg-white border-t hover:shadow">
-            <img onClick={() => { navigate(`${_id}`)}} title={name} className="rounded-t-md object-fill w-full h-72" src={proImage} alt={name} />
+            <img onClick={() => { navigate(`/explore/${_id}`, { replace: true })}} title={name} className="rounded-t-md object-fill w-full h-72" src={proImage} alt={name} />
             <div className="flex flex-col justify-between p-2 border-x border-b rounded-b-md">
                 <div title={name} className="border-b pb-1 truncate">
                     {name}
