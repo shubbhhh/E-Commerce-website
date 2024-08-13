@@ -30,13 +30,13 @@ export function Home() {
                 <Carousel slides={slides} autoSlide={true} />
             </div>
         </div>
-        <div className="flex items-center h-[600px] my-6">
-            <div className={`flex-col justify-center w-1/3 items-center ${ animate? "fadeInLeft" : ""}`}>
-                <div className="m-4 items-center">
-                    <div className="m-4 text-6xl p-2 font-bold">
+        <div className="flex items-center my-6">
+            <div className={`flex flex-col justify-center items-center ${ animate? "fadeInLeft" : ""}`}>
+                <div className="m-4 items-center w-[600px]">
+                    <div className="m-4 text-6xl p-2 font-bold text-wrap">
                         Top Fashion for a top price!
                     </div>
-                    <div className="m-4 text-lg p-2 font-thin">
+                    <div className="m-4 text-lg p-2 font-thin text-wrap">
                         We sell only the most exclusive and high quality products for you. We are the best so come and shop with us.
                     </div>
                     <div className="flex">
