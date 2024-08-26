@@ -19,11 +19,15 @@ This project is an e-commerce store built using React for the frontend, Express 
 
 - Home Page:
   
-    ![Vite + React - Google Chrome 6_29_2024 11_30_58 AM](https://github.com/shubbhhh/E-Commerce-website/assets/121121079/7df6e343-f168-45cf-9c00-8be33e852dfe)
+    ![Screenshot 2024-08-26 215140](https://github.com/user-attachments/assets/7e65ff8f-dd3b-4faa-8669-90b0e2ffd567)
 
 - Explore Page:
 
-    ![Screenshot 2024-06-29 113157](https://github.com/shubbhhh/E-Commerce-website/assets/121121079/2f7b15e2-8d19-4fe9-a81e-6a47708c1294)
+    ![Screenshot 2024-08-26 215204](https://github.com/user-attachments/assets/e4fca481-fb68-464f-8d98-3646e67d7738)
+
+- Product(explore/:id) Page:
+
+    ![Screenshot 2024-08-26 215225](https://github.com/user-attachments/assets/c0aa3a3e-dbf6-4eaf-bee6-33da75053dd7)
 
 - Profile Page:
   
@@ -31,10 +35,7 @@ This project is an e-commerce store built using React for the frontend, Express 
 
 - Profile/cart Page:
 
-    ![Screenshot 2024-06-29 120803](https://github.com/shubbhhh/E-Commerce-website/assets/121121079/333820e8-1626-4af0-88f9-8177dca5f05b)
-
-
-
+    ![Screenshot 2024-08-26 215247](https://github.com/user-attachments/assets/03b5e6e2-6ab2-480b-827d-55bedd575fde)
 
 
 
