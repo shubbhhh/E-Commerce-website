@@ -13,7 +13,7 @@ export function Navbar() {
     }
 
     return (
-        <div className={`navbar py-4 ${loction.pathname == "/" ? "" : "shadow-sm"} ${loction.pathname == "/explore" ? "bg-[#f3f3f3]" : ""} flex justify-center h-[60px]`}>
+        <div className={`navbar py-4 ${loction.pathname == "/" ? "" : "shadow-sm"} ${!(loction.pathname == "/") ? "bg-[#f3f3f3]" : ""} flex justify-center h-[60px]`}>
             <div className="flex items-center w-full md:justify-between max-w-screen-xl mx-auto">
                 <div className="flex justify-between gap-3">
                     <a href="/" className="flex gap-2 items-center text-3xl font-thin">

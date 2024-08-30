@@ -28,14 +28,14 @@ export function Carousel ({ slides, autoSlide = false, autoSlideInterval = 5000 
             </div>
 
             {/* Navigation Buttons */}
-            {/* <div className="absolute inset-0 flex items-center justify-between p-4">
-                <button onClick={prev} className="text-gray-800 hover:bg-white/30">
+            <div className="absolute inset-0 flex items-center justify-between">
+                <button onClick={prev} className="text-gray-800 h-40 rounded-r-md hover:bg-white/20">
                     <ChevronLeft size={40} />
                 </button>
-                <button onClick={next} className="text-gray-800 hover:bg-white/30">
+                <button onClick={next} className="text-gray-800 h-40 rounded-l-md hover:bg-white/20">
                     <ChevronRight size={40} />
                 </button>
-            </div> */}
+            </div>
 
             {/* Slide Indicator */}
             {/* <div className="absolute bottom-4 right-0 left-0">
